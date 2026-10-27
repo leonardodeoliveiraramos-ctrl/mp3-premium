@@ -132,6 +132,11 @@ async def get_video_info(url: str):
         "skip_download": True,
         "quiet": True,
         "no_warnings": True,
+        "extractor_args": {
+            "youtube": {
+                "player_client": ["android", "web"]
+            }
+        }
     }
 
     loop = asyncio.get_event_loop()
@@ -246,9 +251,13 @@ async def websocket_download(websocket: WebSocket):
             "progress_hooks": [progress_hook],
             "noplaylist": not is_playlist,
             "ffmpeg_location": FFMPEG_PATH,
-            "ignoreerrors": True,
             "quiet": True,
             "no_warnings": True,
+            "extractor_args": {
+                "youtube": {
+                    "player_client": ["android", "web"]
+                }
+            }
         }
 
         if mode == "audio":
@@ -276,11 +285,14 @@ async def websocket_download(websocket: WebSocket):
         try:
             info = await loop.run_in_executor(None, _run_ydl)
 
-            # Localiza o arquivo baixado correspondente a este download_id
+            # Localiza o arquivo baixado recursivamente
             found_file = None
-            for fname in os.listdir(DOWNLOAD_DIR):
-                if fname.startswith(f"{download_id}_"):
-                    found_file = os.path.join(DOWNLOAD_DIR, fname)
+            for root, dirs, files in os.walk(DOWNLOAD_DIR):
+                for fname in files:
+                    if fname.startswith(f"{download_id}_"):
+                        found_file = os.path.join(root, fname)
+                        break
+                if found_file:
                     break
 
             if found_file and os.path.exists(found_file):
