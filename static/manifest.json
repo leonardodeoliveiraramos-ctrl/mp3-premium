@@ -1,0 +1,24 @@
+{
+  "name": "MP3 PREMIUM",
+  "short_name": "MP3 PREMIUM",
+  "description": "Baixe músicas em MP3 e vídeos em MP4 direto no seu celular.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#12141a",
+  "theme_color": "#1f6aa5",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "/icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
