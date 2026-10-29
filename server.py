@@ -134,7 +134,7 @@ async def get_video_info(url: str):
         "no_warnings": True,
         "extractor_args": {
             "youtube": {
-                "player_client": ["android", "web"]
+                "player_client": ["visionos", "android"]
             }
         }
     }
@@ -255,7 +255,7 @@ async def websocket_download(websocket: WebSocket):
             "no_warnings": True,
             "extractor_args": {
                 "youtube": {
-                    "player_client": ["android", "web"]
+                    "player_client": ["visionos", "android"]
                 }
             }
         }

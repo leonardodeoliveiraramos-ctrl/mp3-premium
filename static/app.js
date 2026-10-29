@@ -124,6 +124,27 @@ btnCopyUrl.addEventListener('click', () => {
   }
 });
 
+const btnSwitchServer = document.getElementById('btn-switch-server');
+if (btnSwitchServer) {
+  btnSwitchServer.addEventListener('click', () => {
+    if (window.AndroidBridge && window.AndroidBridge.openServerDialog) {
+      window.AndroidBridge.openServerDialog();
+    } else {
+      showToast('No app do celular: segure a tela para trocar o servidor.');
+    }
+  });
+}
+
+const brand = document.querySelector('.brand');
+if (brand) {
+  brand.style.cursor = 'pointer';
+  brand.addEventListener('click', () => {
+    if (window.AndroidBridge && window.AndroidBridge.openServerDialog) {
+      window.AndroidBridge.openServerDialog();
+    }
+  });
+}
+
 // --- BOTÃO COLAR ÁREA DE TRANSFERÊNCIA ---
 btnPaste.addEventListener('click', async () => {
   try {

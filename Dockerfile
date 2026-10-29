@@ -9,9 +9,11 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 
 WORKDIR /app
 
-# Instalar dependências Python
+# Instalar dependências Python garantindo yt-dlp sempre atualizado
 COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install --no-cache-dir -U pip && \
+    pip install --no-cache-dir -U yt-dlp && \
+    pip install --no-cache-dir -r requirements.txt
 
 # Copiar arquivos do projeto
 COPY . .
